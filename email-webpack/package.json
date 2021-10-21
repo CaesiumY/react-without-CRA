@@ -27,7 +27,7 @@
   },
   "babel": {
     "presets": [
-      "react"
+      "@babel/preset-react"
     ]
   }
 }
