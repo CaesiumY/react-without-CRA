@@ -15,4 +15,5 @@ Create React App 없이 설정해보는 리액트
   - [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react)
   - [style-loader](https://webpack.kr/guides/asset-management/#loading-css)
   - [css-loader](https://webpack.kr/guides/asset-management/#loading-css)
-  - [react-hot-loader](https://github.com/gaearon/react-hot-loader)
+  - ~~[react-hot-loader](https://github.com/gaearon/react-hot-loader)~~(Deprecated)
+  - [react-refresh](https://github.com/pmmmwh/react-refresh-webpack-plugin)
