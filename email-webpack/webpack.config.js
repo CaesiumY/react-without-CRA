@@ -1,19 +1,19 @@
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-const isDevelopment = process.env.NODE_ENV !== "production";
+// const isDevelopment = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  mode: isDevelopment ? "development" : "production",
+  mode: "development",
   devServer: {
     hot: true,
   },
-  entry: "./jsx/app.jsx",
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "js"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.[hash].js",
     clean: true,
-    publicPath: "/",
   },
   devtool: "eval-cheap-module-source-map",
   module: {
@@ -23,20 +23,34 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.jsx$/i,
+        test: /\.(jsx|js)$/i,
         exclude: /(node_modules)/,
         use: [
           {
             loader: require.resolve("babel-loader"),
             options: {
-              plugins: [
-                isDevelopment && require.resolve("react-refresh/babel"),
-              ].filter(Boolean),
+              plugins: [require.resolve("react-refresh/babel")].filter(Boolean),
+            },
+          },
+        ],
+      },
+      {
+        test: /.html$/,
+        use: [
+          {
+            loader: require.resolve("html-loader"),
+            options: {
+              minimize: true,
             },
           },
         ],
       },
     ],
   },
-  plugins: [isDevelopment && new ReactRefreshWebpackPlugin()].filter(Boolean),
+  plugins: [
+    new ReactRefreshWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "public/index.html",
+    }),
+  ].filter(Boolean),
 };
