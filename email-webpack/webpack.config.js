@@ -53,4 +53,7 @@ module.exports = {
       template: "public/index.html",
     }),
   ].filter(Boolean),
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
 };

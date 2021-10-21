@@ -1,5 +1,13 @@
 import React from "react";
+import Helloworld from "./Helloworld";
 
-export default function Content() {
-  return <h1>Hello</h1>;
-}
+const Content = () => {
+  return (
+    <div>
+      <h1>Hello</h1>
+      <Helloworld />
+    </div>
+  );
+};
+
+export default Content;
