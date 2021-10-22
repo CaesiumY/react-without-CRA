@@ -4,3 +4,7 @@
 button {
   margin: 5px;
 }
+
+a.active {
+  color: red;
+}
