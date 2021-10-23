@@ -1,37 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter, Route, withRouter } from "react-router-dom";
-import "./css/index.css";
-import Content from "./components/Content";
-import About from "./components/About";
-import Posts from "./components/Posts";
-import Contact from "./components/Contact";
+import { Provider } from "react-redux";
 
-const WithRouterContact = withRouter(Contact);
-const WithRouterPosts = withRouter(Posts);
-
-const posts = {
-  title: "Post",
-  content: "Post Content",
-};
+import { store } from "./app/store";
+import App from "./App";
 
 ReactDOM.render(
-  <HashRouter>
-    <Route path="/">
-      <Content />
-      <Route path="/about">
-        <About />
-      </Route>
-      <Route exact path="/posts">
-        <Posts posts={posts} />
-      </Route>
-      <Route path="/posts/:id">
-        <WithRouterPosts posts={posts} />
-      </Route>
-      <Route path="/contact">
-        <WithRouterContact />
-      </Route>
-    </Route>
-  </HashRouter>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("app")
 );
