@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Content = ({ children }) => {
+const Content = () => {
   return (
     <div>
       <h1>Node University</h1>
@@ -22,9 +22,13 @@ const Content = ({ children }) => {
               Contact Us
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/counter" activeClassName="active">
+              redux-toolkit counter example
+            </NavLink>
+          </li>
         </ul>
       </nav>
-      {children}
     </div>
   );
 };

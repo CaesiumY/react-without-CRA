@@ -4,6 +4,7 @@ import Content from "./components/Content";
 import About from "./components/About";
 import Posts from "./components/Posts";
 import Contact from "./components/Contact";
+import Counter from "./components/Counter";
 
 const posts = {
   title: "Post",
@@ -29,6 +30,9 @@ const App = () => {
         </Route>
         <Route path="/contact">
           <WithRouterContact />
+        </Route>
+        <Route path="/counter">
+          <Counter />
         </Route>
       </Route>
     </HashRouter>
