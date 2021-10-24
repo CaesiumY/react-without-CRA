@@ -14,7 +14,7 @@
   display: none;
 }
 
-.movie {
+.movie-link {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -39,7 +39,7 @@
   .list,
   .listHidden {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
     justify-content: center;
     height: 100%;
@@ -47,7 +47,7 @@
     overflow-x: auto;
   }
 
-  .movie {
+  .movie-link {
     margin: 10px;
   }
 }

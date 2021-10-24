@@ -14,7 +14,7 @@ export const movieSlice = createSlice({
       state.all = action.payload;
     },
     fetchMovie: (state, action) => {
-      state.current = action.payload;
+      state.current = state.all[action.payload];
     },
   },
 });
