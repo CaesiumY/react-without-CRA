@@ -1,21 +1,21 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Movies from "./components/movies";
 import Movie from "./components/movie";
-
-const HelloWorld = () => <div>Hello world</div>;
+import "./app.css";
 
 const App = () => {
   return (
     <HashRouter>
       <Route path="/">
-        <HelloWorld />
-        <Route path="/movies">
-          <Movies />
-          <Route path="/:id">
+        <Switch>
+          <Route exact path="/movies">
+            <Movies />
+          </Route>
+          <Route path="/movies/:id">
             <Movie />
           </Route>
-        </Route>
+        </Switch>
       </Route>
     </HashRouter>
   );
