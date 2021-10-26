@@ -5,6 +5,7 @@ import About from "./components/About";
 import Posts from "./components/Posts";
 import Contact from "./components/Contact";
 import Counter from "./components/Counter";
+import Pokemon from "./components/Pokemon";
 
 const posts = {
   title: "Post",
@@ -33,6 +34,9 @@ const App = () => {
         </Route>
         <Route path="/counter">
           <Counter />
+        </Route>
+        <Route path="/pokemon">
+          <Pokemon />
         </Route>
       </Route>
     </HashRouter>

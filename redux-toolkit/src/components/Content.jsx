@@ -27,6 +27,11 @@ const Content = () => {
               redux-toolkit counter example
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/pokemon" activeClassName="active">
+              RTK Query example
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>
