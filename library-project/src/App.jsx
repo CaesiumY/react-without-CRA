@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import Modal from "./components/Modal";
 import Products from "./components/Products";
 import { PRODUCTS } from "./utils/constants";
 
@@ -14,7 +15,37 @@ const Copy = () => (
   </p>
 );
 
-const LibraryApp = () => <div>library</div>;
+const LibraryApp = (props) => {
+  const [isModal, setIsModal] = useState(false);
+  const [prevChildren, setPrevChildren] = useState("");
+
+  useEffect(() => {
+    const modal = props.location?.state?.modal;
+    setIsModal(modal);
+
+    if (isModal) {
+      setPrevChildren(props.children);
+    }
+  }, [props.location]);
+
+  return (
+    <div className="well">
+      <Heading />
+      <div>
+        {isModal ? prevChildren : props.children}
+
+        {isModal ? (
+          <Modal isOpen={true} returnTo={props.location.state.returnTo}>
+            {props.children}
+          </Modal>
+        ) : (
+          ""
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Index = () => <div>index</div>;
 
 const App = () => {
