@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Link, useLocation } from "react-router-dom";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import Modal from "./components/Modal";
@@ -16,17 +16,18 @@ const Copy = () => (
 );
 
 const LibraryApp = (props) => {
+  const location = useLocation();
   const [isModal, setIsModal] = useState(false);
   const [prevChildren, setPrevChildren] = useState("");
 
   useEffect(() => {
-    const modal = props.location?.state?.modal;
+    const modal = location.state?.modal;
     setIsModal(modal);
 
     if (isModal) {
       setPrevChildren(props.children);
     }
-  }, [props.location]);
+  }, [location]);
 
   return (
     <div className="well">
@@ -35,7 +36,7 @@ const LibraryApp = (props) => {
         {isModal ? prevChildren : props.children}
 
         {isModal ? (
-          <Modal isOpen={true} returnTo={props.location.state.returnTo}>
+          <Modal isOpen={!!isModal} returnTo={location.state.returnTo}>
             {props.children}
           </Modal>
         ) : (
@@ -46,7 +47,41 @@ const LibraryApp = (props) => {
   );
 };
 
-const Index = () => <div>index</div>;
+const Index = () => {
+  const location = useLocation();
+
+  return (
+    <div>
+      <Copy />
+      <p>
+        <Link to="/cart" className="btn btn-danger">
+          Cart
+        </Link>
+      </p>
+      <div>
+        {PRODUCTS.map((p) => (
+          <Link
+            key={p.id}
+            to={{
+              pathname: `/products/${p.id}`,
+              state: {
+                modal: true,
+                returnTo: location?.pathname,
+              },
+            }}
+          >
+            <img
+              src={p.src}
+              alt={p.title}
+              height="100"
+              style={{ margin: 10 }}
+            />
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const App = () => {
   const [cartItems, setCartItems] = useState({});
